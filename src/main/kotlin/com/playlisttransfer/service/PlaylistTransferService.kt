@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PlaylistTransferService {
+    // Determines whether the link URL is from Apple Music or YouTube Music
     fun transferPlaylist(playlistUrl: String) {
         if (playlistUrl.contains("music.youtube.com")) {
             transferFromYouTube(playlistUrl)
