@@ -3,18 +3,14 @@ package com.playlisttransfer.service
 import org.springframework.stereotype.Service
 
 @Service
-class PlaylistTransferService {
-    // Determines whether the link URL is from Apple Music or YouTube Music
+class PlaylistTransferService(private val youtubeService: YouTubeService) {
+
     fun transferPlaylist(playlistUrl: String) {
         if (playlistUrl.contains("music.youtube.com")) {
-            transferFromYouTube(playlistUrl)
+            youtubeService.transferFromYouTube(playlistUrl)
         } else if (playlistUrl.contains("music.apple.com")) {
             transferFromAppleMusic(playlistUrl)
         }
-    }
-
-    private fun transferFromYouTube(playlistUrl: String) {
-        // TODO: Call YouTube API: https://ytmusicapi.readthedocs.io/en/latest/
     }
 
     private fun transferFromAppleMusic(playlistUrl: String) {
