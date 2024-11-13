@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service
 @Service
 class PlaylistTransferService(private val youtubeService: YouTubeService) {
 
-    fun transferPlaylist(playlistUrl: String) {
+    suspend fun transferPlaylist(playlistUrl: String) {
         if (playlistUrl.contains("music.youtube.com")) {
-            youtubeService.transferFromYouTube(playlistUrl)
+            youtubeService.getPlaylistItems(playlistUrl)
         } else if (playlistUrl.contains("music.apple.com")) {
             transferFromAppleMusic(playlistUrl)
         }

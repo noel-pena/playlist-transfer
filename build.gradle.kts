@@ -10,12 +10,12 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-web:3.1.0")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:3.1.0")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client:3.1.0")
+    implementation("org.springframework.boot:spring-boot-starter-security:3.1.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
 }
 
 kotlin {
