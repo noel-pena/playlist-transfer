@@ -1,4 +1,4 @@
-package com.playlisttransfer.data
+package com.playlisttransfer.model.youtube
 
 data class YouTubePlaylistResponse(val items: List<YouTubePlaylistItemWrapper>)
 data class YouTubePlaylistItemWrapper(val snippet: YouTubePlaylistItemSnippet?)

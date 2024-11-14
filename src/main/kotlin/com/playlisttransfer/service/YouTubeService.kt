@@ -1,7 +1,7 @@
 package com.playlisttransfer.service
 
-import com.playlisttransfer.data.YouTubePlaylistItem
-import com.playlisttransfer.data.YouTubePlaylistResponse
+import com.playlisttransfer.model.youtube.YouTubePlaylistItem
+import com.playlisttransfer.model.youtube.YouTubePlaylistResponse
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
