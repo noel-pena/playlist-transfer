@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder
 
 @Service
 class YouTubeService(private val webClient: WebClient) {
+
     private val youtubeApiBaseUrl = "https://www.googleapis.com/youtube/v3/"
 
     fun extractPlaylistId(playlistUrl: String): String? {
@@ -25,23 +26,25 @@ class YouTubeService(private val webClient: WebClient) {
             .queryParam("part", "snippet")
             .queryParam("playlistId", playlistId)
             .queryParam("maxResults", 50)
+//            .queryParam("key", {GOOGLE_CLIENT_SECRET})
             .build()
             .toUri()
 
-        val response = webClient.get()
-            .uri(uri)
-            .retrieve()
-            .awaitBody<YouTubePlaylistResponse>()
+        return try {
+            val response = webClient.get()
+                .uri(uri)
+                .retrieve()
+                .awaitBody<YouTubePlaylistResponse>()
 
-        return response.items.mapNotNull { item ->
-            item.snippet?.let { snippet ->
-                snippet.resourceId?.videoId?.let { videoId ->
-                    YouTubePlaylistItem(
-                        title = snippet.title ?: "Unknown Title",
-                        videoId = videoId
-                    )
-                }
+            response.items.map { item ->
+                YouTubePlaylistItem(
+                    title = item.snippet?.title ?: "unknown",
+                    videoId = item.snippet?.resourceId?.videoId ?: "unknown",
+                )
             }
+        } catch (e: Exception) {
+            println("Error fetching playlist: ${e.message}")
+            emptyList()
         }
     }
 }
