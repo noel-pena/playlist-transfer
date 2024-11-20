@@ -2,6 +2,7 @@ package com.playlisttransfer.service
 
 import com.playlisttransfer.model.youtube.YouTubePlaylistItem
 import com.playlisttransfer.model.youtube.YouTubePlaylistResponse
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
@@ -10,6 +11,9 @@ import org.springframework.web.util.UriComponentsBuilder
 
 @Service
 class YouTubeService(private val webClient: WebClient) {
+
+    @Value("\${google.client.secret}")
+    private lateinit var youtubeApiKey: String
 
     private val youtubeApiBaseUrl = "https://www.googleapis.com/youtube/v3/"
 
@@ -26,7 +30,7 @@ class YouTubeService(private val webClient: WebClient) {
             .queryParam("part", "snippet")
             .queryParam("playlistId", playlistId)
             .queryParam("maxResults", 50)
-//            .queryParam("key", {GOOGLE_CLIENT_SECRET})
+            .queryParam("key", youtubeApiKey)
             .build()
             .toUri()
 
@@ -35,7 +39,6 @@ class YouTubeService(private val webClient: WebClient) {
                 .uri(uri)
                 .retrieve()
                 .awaitBody<YouTubePlaylistResponse>()
-
             response.items.map { item ->
                 YouTubePlaylistItem(
                     title = item.snippet?.title ?: "unknown",
