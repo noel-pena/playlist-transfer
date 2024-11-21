@@ -35,6 +35,7 @@ class YouTubeService(private val webClient: WebClient) {
             .toUri()
 
         return try {
+            println("test")
             val response = webClient.get()
                 .uri(uri)
                 .retrieve()
