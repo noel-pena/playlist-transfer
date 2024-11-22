@@ -7,6 +7,10 @@ import com.playlisttransfer.model.youtube.YouTubePlaylistItem
 @RequestMapping("/api/playlist")
 class PlaylistTransferController(private val playlistTransferService: PlaylistTransferService) {
 
+    init {
+        println("test1")
+    }
+
     @PostMapping("/transfer")
     suspend fun transferPlaylist(@RequestBody playlistUrl: String): ResponseEntity<List<YouTubePlaylistItem>> {
         println("Received request to transfer playlist: $playlistUrl")

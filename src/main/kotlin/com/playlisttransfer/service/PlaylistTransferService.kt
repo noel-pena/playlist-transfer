@@ -10,7 +10,6 @@ class PlaylistTransferService(private val youtubeService: YouTubeService) {
         return if (playlistUrl.contains("music.youtube.com")) {
             youtubeService.getPlaylistItems(playlistUrl)
         } else if (playlistUrl.contains("music.apple.com")) {
-
             println("Apple Music transfer is not yet implemented.")
             emptyList()
         } else {
