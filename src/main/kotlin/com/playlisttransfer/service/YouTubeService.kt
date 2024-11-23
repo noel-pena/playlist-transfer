@@ -3,8 +3,6 @@ package com.playlisttransfer.service
 import com.playlisttransfer.model.youtube.YouTubePlaylistItem
 import com.playlisttransfer.model.youtube.YouTubePlaylistResponse
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.CommandLineRunner
-import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
